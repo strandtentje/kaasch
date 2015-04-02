@@ -10,21 +10,21 @@
 		naarwestoost = naar.westoost, naarnoordzuid = naar.noordzuid 
 		}>
 
-	<cfinvoke component="model" method="validecoordinaten" returnVariable="vanfout" coordinaten="#van#">
-	<cfinvoke component="model" method="validecoordinaten" returnVariable="naarfout" coordinaten="#naar#">
+	<cfinvoke component="model.read" method="validecoordinaten" returnVariable="vanfout" coordinaten="#van#">
+	<cfinvoke component="model.read" method="validecoordinaten" returnVariable="naarfout" coordinaten="#naar#">
 
 	<cfinclude template="validatie/vannaarpositie.cfm">
 
 	<cfif (vanfout eq 0) AND (naarfout eq 0)>
-		<cfinvoke component="model" method="coordinaatstukid" returnVariable="stukid" coordinaten="#van#">
+		<cfinvoke component="model.read" method="coordinaatstukid" returnVariable="stukid" 
+			coordinaten="#van#">
 		<cfinclude template="validatie/stukid.cfm">
 
-		<cfinvoke component="model" method="coordinaatstukid" returnVariable="plaatsstatus" coordinaten="#naar#">
+		<cfinvoke component="model.read" method="coordinaatstukid" returnVariable="plaatsstatus" 
+			coordinaten="#naar#">
 		<cfinclude template="validatie/plaatsstatus.cfm">
 
-		
-	<cfelse>
-
+		<cfinvoke component="model.write" method="verplaatsstuk" stukid="#stukid#" positie="#naar#">
 	</cfif>
 </cfif>
 
