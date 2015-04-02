@@ -2,6 +2,6 @@
 
 <ul>
 	<cfoutput query="lijst">
-		<li><a href="?bord=#id#">Bord #id# <cfif #isvergrendeld# eq 1>(vergrendeld)</cfif></a></li>
+		<li><a href="?bord=#id#">Bord #id# '#naam#' <cfif #isvergrendeld# eq 1>(vergrendeld)</cfif></a></li>
 	</cfoutput>
 </ul>
