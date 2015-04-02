@@ -1,17 +1,22 @@
 <cfif isDefined("form.vannoordzuid") AND isDefined("form.vanwestoost")>
-	<cfinvoke component="model" method="stukken" returnvariable="fout"
-		westoost="#Trim(form.vanwestoost)#"	noordzuid="#Trim(form.noordzuid)#">
+	<cfset vanwestoost = Trim(form.vanwestoost)>
+	<cfset vannoordzuid = Trim(form.vannoordzuid)>
+	<cfset naarwestoost = Trim(form.naarwestoost)>
+	<cfset naarnoordzuid = Trim(form.naarnoordzuid)>
 
-	<cfif fout gt 0>
-		<cfif fout gt 1>
-			<span class="error">Noord-zuid coordinaten kunnen 1 tot en met 8 zijn.</span>
-		</cfif>
-		<cfif (fout mod 2) eq 1>
-			<span class="error">West-oost coordinaten kunnen A tot en met F zijn.</span>
-		</cfif>
-	<cfelse>
+	<cfinvoke component="model" method="stukken" returnvariable="vanfout"
+		westoost="#vanwestoost#" noordzuid="#vannoordzuid#">
+	<cfinvoke component="model" method="stukken" returnvariable="naarfout"
+		westoost="#naarwestoost#" noordzuid="#naarnoordzuid#">
+
+	<cfinclude template="validatie/vannaarpositie.cfm">
+
+	<cfif (vanfout eq 0) AND (naarfout eq 0)>
+		<cfinvoke component="model" method="coordinaatstukid" returnvariable="stukid"
+			westoost="#vanwestoost#" noordzuid="#vannoordzuid#">
+
+		<cfinclude template="validatie/stukidkiezen.cfm">
+
 
 	</cfif>
-
-
 </cfif>

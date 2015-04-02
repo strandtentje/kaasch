@@ -9,13 +9,11 @@
 	</cffunction>
 
 	<cffunction name="validecoordinaten" returntype="integer" access="public">
-		<cfargument 
-			name="westoost" displayname="west-oost letters" 
+		<cfargument name="westoost" displayname="west-oost letters" 
 			hint="west-oost coordinaat letters A tot en met F"
     		required="yes" type="string">
-		<cfargument 
-			name="noordzuid" displayname="noord-zuid letters" 
-			hint="noord-zuid coordinaat letters A tot en met F"
+		<cfargument name="noordzuid" displayname="noord-zuid cijfers" 
+			hint="noord-zuid coordinaat letters 1 tot en met 8F"
     		required="yes" type="string">
 
 		<cfset errorcode = 0>
@@ -29,5 +27,26 @@
 		</cfif>
 
 		<cfreturn errorcode>
+	</cffunction>
+
+	<cffunction name="coordinaatstukid" returntype="int" access="public">
+		<cfargument name="westoost" displayname="west-oost letters" 
+			hint="west-oost coordinaat letters A tot en met F"
+    		required="yes" type="string">
+		<cfargument name="noordzuid" displayname="noord-zuid letters" 
+			hint="noord-zuid coordinaat letters A tot en met F"
+    		required="yes" type="string">
+
+		<cfquery name="stuk" datasource="rob_test">
+			SELECT id FROM test_rob.dbo.Stuk WHERE 
+				westoost = ASCII(<cfqueryparam value="#westoost#" maxlength="1">) - 64 AND
+				noordzuid = <cfqueryparam value="#noordzuid#" maxlength="1">;
+		</cfquery>
+
+		<cfif stuk.RecordCount neq 1>
+			<cfreturn (-stuk.RecordCount)>
+		</cfif>
+
+		<cfreturn stuk.id[1]>
 	</cffunction>
 </cfcomponent>
