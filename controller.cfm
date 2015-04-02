@@ -1,6 +1,6 @@
 <cfset refill = { vanwestoost = "", vannoordzuid = "", naarwestoost = "", naarnoordzuid = "" }>
 
-<cfif isDefined("form.vannoordzuid") AND isDefined("form.vanwestoost")>
+<cfif structKeyExists(form, "vannoordzuid") AND structKeyExists(form, "vanwestoost")>
 	<cfset van.westoost = Trim(form.vanwestoost)>
 	<cfset van.noordzuid = Trim(form.vannoordzuid)>
 	<cfset naar.westoost = Trim(form.naarwestoost)>

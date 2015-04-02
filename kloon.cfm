@@ -1,8 +1,8 @@
-<cfif isDefined("form.bord")><cfset bord = form.bord></cfif>
+<cfif structKeyExists(form, "bord")><cfset bord = form.bord></cfif>
 
 <cfinclude template="skelet/header.cfm">
 
-<cfif bordbeschikbaar AND isDefined("form.naam")>
+<cfif bordbeschikbaar AND structKeyExists(form, "naam")>
 	<cfinvoke component="model.write" method="vermenigvuldig" returnvariable="nieuwbord"
 		bordid="#bord#" naam="#form.naam#">
 

@@ -1,4 +1,4 @@
-<cfif isDefined("url.bord")><cfset bord = url.bord></cfif>
+<cfif structKeyExists(url, "bord")><cfset bord = url.bord></cfif>
 
 <cfinclude template="skelet/header.cfm">
 

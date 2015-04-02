@@ -6,7 +6,7 @@
 
 		<cfset errorcode = 0>
 
-    	<cfif reFind("^[A-F]$", coordinaten.westoost) neq 1>
+    	<cfif reFind("^[A-H]$", coordinaten.westoost) neq 1>
     		<cfset errorcode = errorcode + 1>
 		</cfif>
 

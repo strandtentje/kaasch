@@ -10,7 +10,8 @@
 				speler #team# 
 			</span>
 			<span class="positie informatie">
-			 	(#westoost#, #noordzuid#)	
+			 	(<span class="westoost">#westoost#</span>, 
+			 	<span class="noordzuid">#noordzuid#</span>)	
 		 	</span>
 		</li>
 	</cfoutput>
