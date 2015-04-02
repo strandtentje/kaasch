@@ -8,7 +8,7 @@
 		<cfreturn lijst>
 	</cffunction>
 
-	<cffunction name="validecoordinaten" returntype="boolean" access="public">
+	<cffunction name="validecoordinaten" returntype="integer" access="public">
 		<cfargument 
 			name="westoost" displayname="west-oost letters" 
 			hint="west-oost coordinaat letters A tot en met F"
@@ -18,8 +18,16 @@
 			hint="noord-zuid coordinaat letters A tot en met F"
     		required="yes" type="string">
 
-    	<cfif reFind("^[A-F]$", westoost) eq 1>
-			<cfif reFind("^[1-8]$", noordzuid) eq 1>
+		<cfset errorcode = 0>
 
+    	<cfif reFind("^[A-F]$", westoost) neq 1>
+    		<cfset errorcode = errorcode + 1>
+		</cfif>
+
+		<cfif reFind("^[1-8]$", noordzuid) neq 1>
+			<cfset errorcode = errorcode + 2>
+		</cfif>
+
+		<cfreturn errorcode>
 	</cffunction>
 </cfcomponent>
